@@ -159,7 +159,7 @@ function Index() {
 
         <section className="grid gap-4 pb-24 md:grid-cols-3">
           {t.features.map(([title, text], i) => {
-            const Icon = icons[i];
+            const Icon = icons[i] ?? Lock;
             return (
               <div key={i} className="rounded-2xl border bg-card p-7 transition hover:border-primary/40">
                 <div className="mb-5 inline-flex rounded-lg bg-accent p-2.5 text-accent-foreground"><Icon size={20} /></div>
