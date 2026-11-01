@@ -23,8 +23,8 @@ export function CookieConsentBanner() {
     localStorage.setItem("als_cookie_consent", "accepted");
     setIsVisible(false);
     const measurementId = (
-      import.meta.env.VITE_GA_MEASUREMENT_ID ||
-      import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_ANALYTICS_API_KEY ||
+      import.meta.env['VITE_GA_MEASUREMENT_ID'] ||
+      import.meta.env['VITE_LOVABLE_CONNECTOR_GOOGLE_ANALYTICS_API_KEY'] ||
       ""
     ).trim();
 

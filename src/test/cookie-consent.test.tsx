@@ -30,7 +30,7 @@ describe("Consent-gated GA4", () => {
     fireEvent.click(screen.getByRole("button", { name: "Прийняти всі" }));
     expect(localStorage.getItem("als_cookie_consent")).toBe("accepted");
     expect(scripts()).toHaveLength(1);
-    expect(scripts()[0].getAttribute("src")).toBe("https://www.googletagmanager.com/gtag/js?id=G-TEST12345");
+    expect(scripts()[0]?.getAttribute("src")).toBe("https://www.googletagmanager.com/gtag/js?id=G-TEST12345");
     expect(window.dataLayer?.map((entry) => Array.from(entry as IArguments))).toContainEqual(["config", "G-TEST12345"]);
   });
 
