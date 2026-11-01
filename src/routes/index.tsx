@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Lock, Zap, SlidersHorizontal, Check, X, Download, ShieldCheck, Keyboard } from "lucide-react";
+import { Lock, Zap, SlidersHorizontal, Check, X, Download, ShieldCheck, Keyboard, Info } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,6 +25,8 @@ const dict = {
     sub: "Легка та безпечна альтернатива Punto Switcher. Працює на 100% локально. Нуль телеметрії. Без доступу до інтернету.",
     cta: "Завантажити для Windows - $2.99",
     once: "Одноразова покупка · Без підписки",
+    hintTitle: "Як запустити тестову версію",
+    hintText: "Додаток працює на 100% локально і не має доступу до мережі. Оскільки це рання тестова збірка без платного сертифіката Windows, фільтр SmartScreen може показати попередження про невідомого видавця. Для запуску натисніть «Докладніше» (More info) → «Виконати у будь-якому разі» (Run anyway).",
     features: [
       ["Ізольований від мережі", "Упакований в MSIX контейнер. Доступ до інтернету вирізано."],
       ["Чистий WinAPI", "Жодного фонового сміття. Миттєва нативна продуктивність."],
@@ -50,6 +52,8 @@ const dict = {
     sub: "Легкая и безопасная альтернатива Punto Switcher. Работает на 100% локально. Ноль телеметрии. Без доступа в интернет.",
     cta: "Скачать для Windows - $2.99",
     once: "Разовая покупка · Без подписки",
+    hintTitle: "Как запустить тестовую версию",
+    hintText: "Приложение работает на 100% локально и не имеет доступа к сети. Поскольку это ранняя тестовая сборка без платного сертификата Windows, фильтр SmartScreen может показать предупреждение о неизвестном издателе. Для запуска нажмите «Подробнее» (More info) → «Выполнить в любом случае» (Run anyway).",
     features: [
       ["Изолирован от сети", "Упакован в MSIX контейнер. Доступ в интернет вырезан."],
       ["Чистый WinAPI", "Никакого фонового мусора. Мгновенная нативная производительность."],
@@ -75,6 +79,8 @@ const dict = {
     sub: "A lightweight, privacy-first alternative to Punto Switcher. 100% local. Zero telemetry. No internet access required.",
     cta: "Get for Windows - $2.99",
     once: "One-time purchase · No subscription",
+    hintTitle: "How to run the beta version",
+    hintText: "The app runs 100% locally and has no network access. Since this is an early test build without a paid Windows certificate, SmartScreen may show an unknown-publisher warning. To launch, click “More info” → “Run anyway”.",
     features: [
       ["Air-gapped by Design", "Packaged as an MSIX container with network capabilities strictly removed."],
       ["Zero Lag, Pure WinAPI", "No heavy background processes. Native performance."],
@@ -153,8 +159,17 @@ function Index() {
             <span className="text-muted-foreground">{t.h1a}</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">{t.sub}</p>
-          <div className="mt-10"><Cta /></div>
-          <p className="mt-4 font-mono text-xs text-muted-foreground">{t.once}</p>
+          <div className="mt-10 flex flex-col items-center gap-4">
+            <Cta />
+            <p className="font-mono text-xs text-muted-foreground">{t.once}</p>
+            <div className="mt-1 flex max-w-xl items-start gap-3 rounded-xl border bg-card/50 px-4 py-3 text-left">
+              <Info size={15} className="mt-0.5 shrink-0 text-muted-foreground" />
+              <div className="text-xs leading-relaxed text-muted-foreground">
+                <span className="font-medium text-foreground">{t.hintTitle}. </span>
+                {t.hintText}
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className="grid gap-4 pb-24 md:grid-cols-3">
