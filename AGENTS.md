@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep GA4 initialization inside CookieConsentBanner's accept-all handler, using browser environment configuration and a unique script ID to prevent duplicate loading; this keeps analytics behind explicit consent.
