@@ -104,26 +104,24 @@ const dict = {
 
 const icons = [Lock, Zap, SlidersHorizontal];
 
+const DOWNLOAD_URL =
+  "https://github.com/baisk2026-create/private-alphabet-switcher/releases/download/v0.1.0-preview/AutoLayoutSwitcher-preview-win-x64.zip";
+
 function Index() {
-  const [open, setOpen] = useState(false);
   const [lang, setLang] = useState<Lang>("uk");
   const t = dict[lang];
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
 
   const Cta = () => (
-    <button
-      onClick={() => setOpen(true)}
+    <a
+      href={DOWNLOAD_URL}
+      download
       className="inline-flex items-center gap-2 rounded-xl bg-primary px-7 py-4 text-base font-semibold text-primary-foreground shadow-glow transition hover:scale-[1.03]"
     >
       <Download size={18} /> {t.cta}
-    </button>
+    </a>
   );
 
   return (
@@ -220,19 +218,6 @@ function Index() {
         © 2026 Auto Layout Switcher
       </footer>
 
-      {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 p-4 backdrop-blur-sm animate-in fade-in" onClick={() => setOpen(false)}>
-          <div role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()} className="relative w-full max-w-md rounded-2xl border bg-card p-8 shadow-glow animate-in zoom-in-95">
-            <button aria-label="Close" onClick={() => setOpen(false)} className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"><X size={18} /></button>
-            <h2 className="text-2xl font-bold">{t.modalTitle}</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.modalText}</p>
-            <a href="/AutoLayoutSwitcher.msix" download className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 font-semibold text-primary-foreground transition hover:opacity-90">
-              <Download size={18} /> {t.modalBtn}
-            </a>
-            <p className="mt-4 text-xs text-muted-foreground">{t.note}</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
